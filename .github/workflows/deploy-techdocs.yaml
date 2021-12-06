@@ -4,6 +4,19 @@ on:
       entity:
         required: true
         type: string
+    secrets:
+      TECHDOCS_S3_BUCKET_NAME:
+        description: 'techdocs s3 bucket'
+        required: true
+      AWS_TECHDOCS_ACCESS_KEY_ID:
+        description: 'aws access key id'
+        required: true
+      AWS_TECHDOCS_SECRET_ACCESS_KEY:
+        description: 'aws secret access key id'
+        required: true
+      AWS_TECHDOCS_REGION:
+        description: 'aws region'
+        required: true
 
 jobs:
   publish-techdocs-site:
