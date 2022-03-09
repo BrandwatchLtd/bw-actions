@@ -26,7 +26,7 @@ runs:
 
     - name: Install techdocs-cli
       shell: bash
-      run: npm install -g @techdocs/cli
+      run: npm install -g @techdocs/cli@0.8.7
 
     - name: Install mkdocs and mkdocs plugins
       shell: bash
