@@ -12,6 +12,7 @@ The `deploy-techdocs` action will build your [techdocs](https://brandwatch.dev/d
       - uses: BrandwatchLtd/bw-actions/deploy-techdocs@main
         with:
           entity: <your-service-name>
+          working-directory: <working-directory>
           TECHDOCS_S3_BUCKET_NAME: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
           AWS_TECHDOCS_ACCESS_KEY_ID: ${{ secrets.AWS_TECHDOCS_ACCESS_KEY_ID }}
           AWS_TECHDOCS_SECRET_ACCESS_KEY: ${{ secrets.AWS_TECHDOCS_SECRET_ACCESS_KEY }}
@@ -19,5 +20,7 @@ The `deploy-techdocs` action will build your [techdocs](https://brandwatch.dev/d
 ```
 
 `your-service-name` is the name of the [backstage](https://github.com/BrandwatchLtd/katalog/tree/main/services) service you want to build a doc for.
+
+`working-directory` lets you optionally set the working directoy where to run the command in. The default is the repo root.
 
 Here is [an example of workflow](https://github.com/BrandwatchLtd/WebappService/blob/main/.github/workflows/techdocs.yml) using techdocs.

@@ -16,6 +16,10 @@ inputs:
   AWS_TECHDOCS_REGION:
     description: 'aws region'
     required: true
+  working-directory:
+    description: Working directory of where to run the command.
+    required: false
+    default: '.'
 
 runs:
   using: "composite"
@@ -26,10 +30,12 @@ runs:
 
     - name: Install techdocs-cli
       shell: bash
+      working-directory: "${{ inputs.working-directory }}"
       run: npm install -g @techdocs/cli@0.8.7
 
     - name: Install mkdocs and mkdocs plugins
       shell: bash
+      working-directory: "${{ inputs.working-directory }}"
       run: python -m pip install mkdocs-techdocs-core==0.*
 
     - name: Generate docs site
@@ -38,6 +44,7 @@ runs:
 
     - name: Publish docs site
       shell: bash
+      working-directory: "${{ inputs.working-directory }}"
       run: |
         techdocs-cli publish --publisher-type awsS3 --storage-name $TECHDOCS_S3_BUCKET_NAME --entity $ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME
       env:
