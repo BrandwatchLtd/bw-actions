@@ -40,6 +40,7 @@ runs:
 
     - name: Generate docs site
       shell: bash
+      working-directory: "${{ inputs.working-directory }}"
       run: techdocs-cli generate --no-docker --verbose
 
     - name: Publish docs site
