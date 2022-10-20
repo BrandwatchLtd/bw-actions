@@ -4,6 +4,9 @@ inputs:
   entity:
     description: 'documentation entity name'
     required: true
+  check:
+    description: 'generate the docs but do not publish the site'
+    default: 'false'
   TECHDOCS_S3_BUCKET_NAME:
     description: 'techdocs s3 bucket'
     required: true
@@ -24,9 +27,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-    - uses: actions/setup-python@v2
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+    - uses: actions/setup-python@v3
 
     - name: Install techdocs-cli
       shell: bash
@@ -44,6 +47,7 @@ runs:
       run: techdocs-cli generate --no-docker --verbose
 
     - name: Publish docs site
+      if: inputs.check != 'true'
       shell: bash
       working-directory: "${{ inputs.working-directory }}"
       run: |
